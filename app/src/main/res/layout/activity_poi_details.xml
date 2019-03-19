@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".PoiDetailsActivity"
+    android:textColor="@android:color/black">
+
+    <EditText
+        android:id="@+id/et_poi_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="POI's name"
+        android:textSize="24sp" />
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:tooltipText="Rate this point of interest"
+        android:layout_marginTop="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Description:" />
+
+    <EditText
+        android:id="@+id/et_poi_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." />
+
+    <EditText
+        android:id="@+id/et_poi_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Adddress"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/et_opening_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Opening hours" />
+
+    <EditText
+        android:id="@+id/et_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text=""
+        android:hint="website; use http://..."
+        android:inputType="textWebEditText" />
+
+    <Switch
+        android:id="@+id/sw_can_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Needs a booking:"
+        android:switchPadding="24dp"/>
+
+    <EditText
+        android:id="@+id/et_booking_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text=""
+        android:inputType="textWebEditText"
+        android:hint="website for bookings" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="cancel" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="save" />
+    </LinearLayout>
+
+</LinearLayout>
