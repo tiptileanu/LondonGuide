@@ -1,5 +1,6 @@
 package mic.alliwanna.be.londonguide;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,10 +28,14 @@ public class PoiList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poi_list);
         rv=findViewById(R.id.id_rv);
+        Intent i=getIntent();
+        final String poiType=i.getStringExtra("TYPE");
+
         //set root in "Attraction" node
-        dbRef= FirebaseDatabase.getInstance().getReference("Attraction");
+        dbRef= FirebaseDatabase.getInstance().getReference(poiType);
         manager=new LinearLayoutManager(PoiList.this);
         rv.setLayoutManager(manager);
+        dbRef.addListenerForSingleValueEvent(listener);
     }
 
     ValueEventListener listener = new ValueEventListener() {
