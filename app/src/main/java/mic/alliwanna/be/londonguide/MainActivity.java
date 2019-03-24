@@ -25,20 +25,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseAuth auth=FirebaseAuth.getInstance();
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build(),
-                new AuthUI.IdpConfig.AnonymousBuilder().build());
-        // Create and launch sign-in intent
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setIsSmartLockEnabled(false)
-                        .setAvailableProviders(providers)
-                        .setLogo(R.drawable.attractions)
-                        .build(),
-                1);
+        // Firebase login/register interface
+//        FirebaseAuth auth=FirebaseAuth.getInstance();
+//        List<AuthUI.IdpConfig> providers = Arrays.asList(
+//                new AuthUI.IdpConfig.EmailBuilder().build(),
+//                new AuthUI.IdpConfig.GoogleBuilder().build(),
+//                new AuthUI.IdpConfig.AnonymousBuilder().build());
+//        // Create and launch sign-in intent
+//        startActivityForResult(
+//                AuthUI.getInstance()
+//                        .createSignInIntentBuilder()
+//                        .setIsSmartLockEnabled(false)
+//                        .setAvailableProviders(providers)
+//                        .setLogo(R.drawable.attractions)
+//                        .build(),
+//                1);
 
 
 

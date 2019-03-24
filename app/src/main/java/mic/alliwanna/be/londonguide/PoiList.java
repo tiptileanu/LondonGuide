@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class PoiList extends AppCompatActivity {
+public class PoiList extends AppCompatActivity implements PoiAdapter.Holder.PoiInterface {
 
     RecyclerView rv;
     RecyclerView.LayoutManager manager;
@@ -46,7 +46,7 @@ public class PoiList extends AppCompatActivity {
                 POI poi=dss.getValue(POI.class);
                 list.add(poi);
             }
-            adapter = new PoiAdapter(list);
+            adapter = new PoiAdapter(list, PoiList.this);
             rv.setAdapter(adapter);
         }
 
@@ -55,4 +55,12 @@ public class PoiList extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onPoiClick(int i) {
+        Intent intent=new Intent(PoiList.this, InfoPoiActivity.class);
+        intent.putExtra("Poi", list.get(i));
+        startActivity(intent);
+
+    }
 }

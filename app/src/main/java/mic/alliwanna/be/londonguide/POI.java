@@ -1,6 +1,9 @@
 package mic.alliwanna.be.londonguide;
 
-public class POI {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class POI implements Parcelable {
     private String poiName, poiDescription, poiAddress, poiOpeningHours, poiWebsite, poiPhotoUrl, poiBookingUrl, poiType;
     private float poiRating;
     private boolean poiCanBook;
@@ -30,6 +33,31 @@ public class POI {
         // Set booking possibility
         this.poiCanBook = poiCanBook;
     }
+
+    protected POI(Parcel in) {
+        poiName = in.readString();
+        poiDescription = in.readString();
+        poiAddress = in.readString();
+        poiOpeningHours = in.readString();
+        poiWebsite = in.readString();
+        poiPhotoUrl = in.readString();
+        poiBookingUrl = in.readString();
+        poiType = in.readString();
+        poiRating = in.readFloat();
+        poiCanBook = in.readByte() != 0;
+    }
+
+    public static final Creator<POI> CREATOR = new Creator<POI>() {
+        @Override
+        public POI createFromParcel(Parcel in) {
+            return new POI(in);
+        }
+
+        @Override
+        public POI[] newArray(int size) {
+            return new POI[size];
+        }
+    };
 
     public String getPoiName() {
         return poiName;
@@ -109,5 +137,24 @@ public class POI {
 
     public void setPoiCanBook(boolean poiCanBook) {
         this.poiCanBook = poiCanBook;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(poiName);
+        dest.writeString(poiDescription);
+        dest.writeString(poiAddress);
+        dest.writeString(poiOpeningHours);
+        dest.writeString(poiWebsite);
+        dest.writeString(poiPhotoUrl);
+        dest.writeString(poiBookingUrl);
+        dest.writeString(poiType);
+        dest.writeFloat(poiRating);
+        dest.writeByte((byte) (poiCanBook ? 1 : 0));
     }
 }

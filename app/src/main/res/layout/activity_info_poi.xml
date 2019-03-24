@@ -10,9 +10,9 @@
     android:layout_margin="16dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:id="@+id/iv_poi_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Westminster, London, SW1A 1AA"
+        android:clickable="true"
         android:autoLink="map"
         android:text="" />
 
@@ -59,7 +60,7 @@
         style="@style/locationAddressSchedulePricePhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="https://www.highandmighty.co.uk/"/>
+        tools:text="https://www.highandmighty.co.uk/"/>
 
     <TextView
         android:id="@+id/tv_poi_booking"
