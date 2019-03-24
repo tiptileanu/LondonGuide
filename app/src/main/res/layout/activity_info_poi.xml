@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoPoiActivity"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder" />
+
+    <TextView
+        android:id="@+id/tv_poi_name"
+        style="@style/poiName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        tools:text="Buckingham Palace"/>
+
+    <TextView
+        android:id="@+id/tv_poi_description"
+        style="@style/locationDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Buckingham Palace is the London residence and administrative headquarters of the monarch of the United Kingdom." />
+
+    <TextView
+        android:id="@+id/tv_poi_address"
+        style="@style/locationAddressSchedulePricePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Westminster, London, SW1A 1AA"
+        android:autoLink="map"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tv_poi_opening"
+        style="@style/locationAddressSchedulePricePhone"
+        tools:text="Daily: 09:30-18:30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tv_poi_website"
+        android:clickable="true"
+        style="@style/locationAddressSchedulePricePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://www.highandmighty.co.uk/"/>
+
+    <TextView
+        android:id="@+id/tv_poi_booking"
+        android:clickable="true"
+        style="@style/locationAddressSchedulePricePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://www.365tickets.co.uk/alton-towers-resort"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Read Reviews"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Submit Review"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -31,6 +31,7 @@ public class PoiList extends AppCompatActivity {
         dbRef= FirebaseDatabase.getInstance().getReference("Attraction");
         manager=new LinearLayoutManager(PoiList.this);
         rv.setLayoutManager(manager);
+        dbRef.addListenerForSingleValueEvent(listener);
     }
 
     ValueEventListener listener = new ValueEventListener() {

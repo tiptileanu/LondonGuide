@@ -34,7 +34,6 @@ public class ImagePickerActivity extends AppCompatActivity {
     private ImageView ivPoi;
     private EditText etPhotoName;
     private Spinner mySpinner;
-    String poiType, photoUrl;
     private Uri url;
     private StorageReference storageReference;
 
@@ -64,6 +63,8 @@ public class ImagePickerActivity extends AppCompatActivity {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // this will name the photo file;
+                // will give it the name of POI + extension that we got with getExtension() method
                 final StorageReference reference=storageReference.child(etPhotoName.getText().toString() + "." + getExtension(url));
                 reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -79,12 +80,14 @@ public class ImagePickerActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+                // if aan error occurs, a toast(message) is displayed
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast toast = Toast.makeText(getApplicationContext(), "Something went wrong, upload failed!!", Toast.LENGTH_SHORT);
                         toast.show();
+                //displays a spinner while the photo is being uploaded
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -103,13 +106,14 @@ public class ImagePickerActivity extends AppCompatActivity {
     }
 
 
-
+    // Method used to extract file extension for POI's photo
     private String getExtension(Uri uri) {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(resolver.getType(uri));
     }
 
+    // Checks result of activity(image pick); if it is the right requst code and result is ok(not failure)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,6 +121,7 @@ public class ImagePickerActivity extends AppCompatActivity {
         if (requestCode == REQUEST && resultCode == RESULT_OK && data.getData() != null)
         {
             url = data.getData();
+            //Use Picasso library to display photo in ImageView
             Picasso.get().load(url).into(ivPoi);
         }
     }
