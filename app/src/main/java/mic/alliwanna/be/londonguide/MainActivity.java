@@ -9,25 +9,47 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     FrameLayout attr, muses, parks;
-    private String TYPE="";
+    private String TYPE = "TYPE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        attr=findViewById(R.id.fl_attractions);
-        muses=findViewById(R.id.fl_museums);
-        parks=findViewById(R.id.fl_parks);
+        FirebaseAuth auth=FirebaseAuth.getInstance();
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.AnonymousBuilder().build());
+        // Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setIsSmartLockEnabled(false)
+                        .setAvailableProviders(providers)
+                        .setLogo(R.drawable.attractions)
+                        .build(),
+                1);
+
+
+
+        attr = findViewById(R.id.fl_attractions);
+        muses = findViewById(R.id.fl_museums);
+        parks = findViewById(R.id.fl_parks);
 
         attr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, PoiList.class);
+                Intent intent = new Intent(MainActivity.this, PoiList.class);
                 intent.putExtra(TYPE, "Attraction");
                 startActivity(intent);
             }
@@ -36,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         muses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, PoiList.class);
+                Intent intent = new Intent(MainActivity.this, PoiList.class);
                 intent.putExtra(TYPE, "Museum");
                 startActivity(intent);
 
@@ -46,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         parks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, PoiList.class);
+                Intent intent = new Intent(MainActivity.this, PoiList.class);
                 intent.putExtra(TYPE, "Park");
                 startActivity(intent);
 
@@ -54,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     @Override
