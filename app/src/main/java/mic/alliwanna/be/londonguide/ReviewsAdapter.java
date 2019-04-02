@@ -42,7 +42,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.Holder> 
 
     public static class Holder extends RecyclerView.ViewHolder {
 
-        TextView userName, userReview;
+        TextView nameOfPoi, userName, userReview;
         RatingBar userRating;
 
         public Holder(@NonNull View itemView) {
