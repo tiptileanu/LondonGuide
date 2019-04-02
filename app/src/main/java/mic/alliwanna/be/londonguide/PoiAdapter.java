@@ -2,6 +2,7 @@ package mic.alliwanna.be.londonguide;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
+public class PoiAdapter extends Adapter<PoiAdapter.Holder> {
 
     ArrayList<POI> list;
     Holder.PoiInterface listener;
@@ -22,6 +23,8 @@ public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
         this.list = list;
         listener = _listener;
     }
+
+
 
     @NonNull
     @Override
