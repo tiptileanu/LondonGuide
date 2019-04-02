@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,21 +27,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Firebase login/register interface
-//        FirebaseAuth auth=FirebaseAuth.getInstance();
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.EmailBuilder().build(),
-//                new AuthUI.IdpConfig.GoogleBuilder().build(),
-//                new AuthUI.IdpConfig.AnonymousBuilder().build());
-//        // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setIsSmartLockEnabled(false)
-//                        .setAvailableProviders(providers)
-//                        .setLogo(R.drawable.attractions)
-//                        .build(),
-//                1);
-
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.AnonymousBuilder().build());
+        // Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setIsSmartLockEnabled(false)
+                        .setAvailableProviders(providers)
+                        .setLogo(R.drawable.attractions)
+                        .build(),
+                1);
+        //method to extract logged in user's info
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        String name = user.getDisplayName();
+        String email = user.getEmail();
 
 
         attr = findViewById(R.id.fl_attractions);

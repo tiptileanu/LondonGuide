@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class InfoPoiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_poi);
         Intent intent = getIntent();
-        POI singlePoi = intent.getParcelableExtra("Poi");
+        final POI singlePoi = intent.getParcelableExtra("Poi");
         iv = findViewById(R.id.iv_poi_photo);
         name = findViewById(R.id.tv_poi_name);
         description = findViewById(R.id.tv_poi_description);
@@ -31,6 +32,8 @@ public class InfoPoiActivity extends AppCompatActivity {
         opening = findViewById(R.id.tv_poi_opening);
         website = findViewById(R.id.tv_poi_website);
         booking = findViewById(R.id.tv_poi_booking);
+        submitReview = findViewById(R.id.btn_submit_review);
+        viewReviews = findViewById(R.id.btn_read_reviews);
 
         photoUrl = singlePoi.getPoiPhotoUrl();
         bookingUrl = "<a href='" + singlePoi.getPoiBookingUrl() + "'> Press here to make a booking </a>";
@@ -57,5 +60,15 @@ public class InfoPoiActivity extends AppCompatActivity {
             booking.setClickable(false);
             booking.setText("No advanced booking is needed.");
         }
+
+        submitReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(InfoPoiActivity.this, SubmitReview.class);
+                i.putExtra("reviewPoi", singlePoi);
+                startActivity(i);
+            }
+        });
     }
 }

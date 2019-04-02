@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
@@ -65,7 +63,7 @@ public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
         }
 
         public interface PoiInterface {
-            public void onPoiClick(int i);
+            void onPoiClick(int i);
         }
     }
 

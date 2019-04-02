@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/tv_poi_name"
-        style="@style/poiName"
+        style="@style/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
@@ -42,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Westminster, London, SW1A 1AA"
+        android:drawableLeft="@drawable/icon_map"
         android:clickable="true"
         android:autoLink="map"
         android:text="" />
@@ -52,20 +53,23 @@
         tools:text="Daily: 09:30-18:30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_alarm"
         android:text="" />
 
     <TextView
         android:id="@+id/tv_poi_website"
-        android:clickable="true"
         style="@style/locationAddressSchedulePricePhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="https://www.highandmighty.co.uk/"/>
+        android:clickable="true"
+        android:drawableLeft="@drawable/icon_web"
+        tools:text="https://www.highandmighty.co.uk/" />
 
     <TextView
         android:id="@+id/tv_poi_booking"
         android:clickable="true"
         style="@style/locationAddressSchedulePricePhone"
+        android:drawableLeft="@drawable/icon_shopping_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="https://www.365tickets.co.uk/alton-towers-resort"/>
@@ -74,18 +78,20 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/btn_read_reviews"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Read Reviews"
-            android:textAllCaps="false"
-            android:layout_weight="1"/>
+            android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/btn_submit_review"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Submit Review"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false" />
     </LinearLayout>
 
 
