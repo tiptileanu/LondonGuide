@@ -10,18 +10,18 @@ import com.google.firebase.database.Query;
 
 public class ReviewsList extends AppCompatActivity {
 
-    RecyclerView rvReviews;
-    RecyclerView.LayoutManager managerReviews;
-    ReviewsAdapter reviewsAdapter;
-    DatabaseReference dbRef;
-    Query queryRef;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reviews_list);
-        rvReviews = findViewById(R.id.id_rv_reviews);
-        dbRef = FirebaseDatabase.getInstance().getReference("Reviews");
-//        queryRef =dbRef.orderByChild();
-    }
+//    RecyclerView rvReviews;
+//    RecyclerView.LayoutManager managerReviews;
+//    ReviewsAdapter reviewsAdapter;
+//    DatabaseReference dbRef;
+//    Query queryRef;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_reviews_list);
+//        rvReviews = findViewById(R.id.id_rv_reviews);
+//        dbRef = FirebaseDatabase.getInstance().getReference("Reviews");
+////        queryRef =dbRef.orderByChild();
+//    }
 }

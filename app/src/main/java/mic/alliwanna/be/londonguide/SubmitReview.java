@@ -55,7 +55,13 @@ public class SubmitReview extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Reviews newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId, rbUserRating.getRating());
+                Reviews newReview;
+                if (userId.isEmpty()){
+                    newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId+"anonymous", rbUserRating.getRating());
+                } else{
+                    newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId, rbUserRating.getRating());
+                }
+
                 dbReviews.child(dbReviews.push().getKey()).setValue(newReview);
                 Toast toast = Toast.makeText(getApplicationContext(), "Review saved", Toast.LENGTH_SHORT);
                 toast.show();
