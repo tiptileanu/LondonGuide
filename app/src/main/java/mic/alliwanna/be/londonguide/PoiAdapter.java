@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
     public void onBindViewHolder(@NonNull Holder holder, int i) {
 
         holder.tv.setText(list.get(i).getPoiName());
+        holder.rb.setRating(list.get(i).getPoiRating());
         Picasso.get().load(list.get(i).getPoiPhotoUrl()).fit().into(holder.iv);
 
     }
@@ -46,12 +48,14 @@ public class PoiAdapter extends RecyclerView.Adapter<PoiAdapter.Holder> {
 
         ImageView iv;
         TextView tv;
+        RatingBar rb;
         PoiInterface listener;
 
         public Holder(@NonNull View itemView, PoiInterface _listener) {
             super(itemView);
             iv = itemView.findViewById(R.id.iv_image);
             tv = itemView.findViewById(R.id.tv_name);
+            rb=itemView.findViewById(R.id.rating_bar_list);
             listener = _listener;
             itemView.setOnClickListener(this);
         }

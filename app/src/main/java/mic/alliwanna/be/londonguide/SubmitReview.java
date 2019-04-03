@@ -22,6 +22,7 @@ public class SubmitReview extends AppCompatActivity {
     private RatingBar rbUserRating;
     private Button btnCancel, btnSubmit;
     private DatabaseReference dbReviews;
+    private float poiRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class SubmitReview extends AppCompatActivity {
 
         //        //method to extract logged in user's info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final String userId = user.getUid();
+        final String userEmail = user.getEmail();
+        final String userId=userEmail.split("@")[0];
 
         tvName = findViewById(R.id.tv_pname);
         etDecription = findViewById(R.id.et_pdescription);
@@ -39,6 +41,8 @@ public class SubmitReview extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btn_psubmit);
         Intent intent = getIntent();
         final POI reviewPoi = intent.getParcelableExtra("reviewPoi");
+
+        poiRating = reviewPoi.getPoiRating();
 
         dbReviews = FirebaseDatabase.getInstance().getReference("Reviews");
 
@@ -55,16 +59,14 @@ public class SubmitReview extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Reviews newReview;
-                if (userId.isEmpty()){
-                    newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId+"anonymous", rbUserRating.getRating());
-                } else{
-                    newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId, rbUserRating.getRating());
-                }
+                Reviews newReview = new Reviews(tvName.getText().toString(), etDecription.getText().toString(), userId, rbUserRating.getRating());
 
                 dbReviews.child(dbReviews.push().getKey()).setValue(newReview);
                 Toast toast = Toast.makeText(getApplicationContext(), "Review saved", Toast.LENGTH_SHORT);
                 toast.show();
+
+                float avRating = reviewPoi.getPoiRating();
+                finish();
             }
         });
 
