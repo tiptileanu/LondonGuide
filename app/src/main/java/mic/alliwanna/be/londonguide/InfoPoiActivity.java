@@ -75,6 +75,7 @@ public class InfoPoiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(InfoPoiActivity.this, ReviewsList.class);
+                intent.putExtra("poiName", singlePoi.getPoiName());
                 startActivity(intent);
             }
         });

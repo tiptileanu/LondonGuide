@@ -12,6 +12,9 @@ public class Reviews {
         this.ratingOfPoi = ratingOfPoi;
     }
 
+    public Reviews() {
+    }
+
     public String getNameOfPoi() {
         return nameOfPoi;
     }

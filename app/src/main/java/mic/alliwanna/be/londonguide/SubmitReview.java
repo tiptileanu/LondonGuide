@@ -30,7 +30,7 @@ public class SubmitReview extends AppCompatActivity {
 
         //        //method to extract logged in user's info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final String userId = user.getEmail();
+        final String userId = user.getUid();
 
         tvName = findViewById(R.id.tv_pname);
         etDecription = findViewById(R.id.et_pdescription);

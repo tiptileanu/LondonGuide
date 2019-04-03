@@ -21,18 +21,20 @@ public class ReviewsList extends AppCompatActivity {
     RecyclerView.LayoutManager managerReviews;
     ReviewsAdapter reviewsAdapter;
     Query queryRef;
-    DatabaseReference dbRef;
-    ArrayList<Reviews> reviewsList;
+    ArrayList<Reviews> reviewsList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews_list);
         rvReviews = findViewById(R.id.id_rv_reviews);
-        dbRef = FirebaseDatabase.getInstance().getReference("Reviews");
         managerReviews=new LinearLayoutManager(ReviewsList.this);
         rvReviews.setLayoutManager(managerReviews);
-        dbRef.addValueEventListener(listener);
+
+        String pname=getIntent().getStringExtra("poiName");
+
+        queryRef = FirebaseDatabase.getInstance().getReference("Reviews").orderByChild("nameOfPoi").equalTo(pname);
+        queryRef.addValueEventListener(listener);
 //        queryRef = dbRef.orderByChild("nameOfPoi").equalTo()
     }
 

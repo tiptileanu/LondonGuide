@@ -14,6 +14,8 @@
 
         <TextView
             android:id="@+id/tv_user_id"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="review posted by user"/>
@@ -23,7 +25,7 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
             android:numStars="5"
             android:stepSize="0.5" />
 
@@ -31,7 +33,7 @@
             android:id="@+id/tv_user_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_margin="16dp"
             android:text="Acesta este un exemplu de review. nu ar trebui sa aibe mai mult de 3 linii. Daca totusi are, este ok. Lorem impsum haga oaga." />
 
     </LinearLayout>

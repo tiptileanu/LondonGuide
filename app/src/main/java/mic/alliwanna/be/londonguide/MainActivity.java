@@ -26,21 +26,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Firebase login/register interface
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.EmailBuilder().build(),
-//                new AuthUI.IdpConfig.GoogleBuilder().build(),
-//                new AuthUI.IdpConfig.AnonymousBuilder().build());
-//        // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setIsSmartLockEnabled(false)
-//                        .setAvailableProviders(providers)
-//                        .setLogo(R.drawable.attractions)
-//                        .build(),
-//                1);
+        //Firebase login/register interface
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.AnonymousBuilder().build());
+        // Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setIsSmartLockEnabled(false)
+                        .setAvailableProviders(providers)
+                        .setLogo(R.drawable.attractions)
+                        .build(),
+                1);
 
         attr = findViewById(R.id.fl_attractions);
         muses = findViewById(R.id.fl_museums);
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sign_out_menu:
                 // sign out
                 AuthUI.getInstance().signOut(this);
+                finish();
                 return true;
             case R.id.add_poi_menu:
                 // go to add poi activity
