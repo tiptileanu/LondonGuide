@@ -29,10 +29,11 @@ public class SubmitReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_review);
 
-        //        //method to extract logged in user's info
+        //method to extract logged in user's info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String userEmail = user.getEmail();
         final String userId=userEmail.split("@")[0];
+
 
         tvName = findViewById(R.id.tv_pname);
         etDecription = findViewById(R.id.et_pdescription);

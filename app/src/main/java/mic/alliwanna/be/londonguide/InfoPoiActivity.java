@@ -72,21 +72,9 @@ public class InfoPoiActivity extends AppCompatActivity {
         submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FirebaseUser loggedUser = FirebaseAuth.getInstance().getCurrentUser();
-                final String loggedUserMail = loggedUser.getEmail();
-
-                if (loggedUserMail != null) {
-                    Intent i = new Intent(InfoPoiActivity.this, SubmitReview.class);
-                    i.putExtra("reviewPoi", singlePoi);
-                    startActivity(i);
-
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "You can not post reviews as Guest", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
-
+                Intent i = new Intent(InfoPoiActivity.this, SubmitReview.class);
+                i.putExtra("reviewPoi", singlePoi);
+                startActivity(i);
             }
         });
 

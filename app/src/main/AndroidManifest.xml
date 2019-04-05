@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LoginScreen" />
+        <activity android:name=".FirstScreen" />
+        <activity android:name=".RegisterUser" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".ReviewsList"></activity>
         <activity android:name=".SubmitReview" />
         <activity android:name=".InfoPoiActivity" />
         <activity android:name=".PoiList" />
         <activity android:name=".PoiDetailsActivity" />
         <activity android:name=".ImagePickerActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

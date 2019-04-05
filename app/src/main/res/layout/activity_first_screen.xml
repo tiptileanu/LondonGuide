@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".FirstScreen">
+
+    <!-- match_parent = make the layout the same width and height as the screen size on the device -->
+
+    <VideoView
+        android:id="@+id/vv1"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp" />
+
+    <!--Include a VideoView GUI component for displaying the video
+
+    android:id="@+id/vv1"
+
+        android:layout_width="match_parent"       **  make the layout the same width and height as the screen size on the device
+        android:layout_height="match_parent"      **  make the layout the same width and height as the screen size on the device
+        android:layout_alignParentStart="true"    **  If true, makes the start edge of this view match the start edge of the parent.
+        android:layout_alignParentTop="true"      **  If true, makes the top edge of this view match the top edge of the parent.
+        android:layout_alignParentEnd="true"      **  If true, makes the end edge of this view match the end edge of the parent.
+        android:layout_alignParentBottom="true"   **  If true, makes the bottom edge of this view match the bottom edge of the parent.
+        android:layout_marginStart="0dp"          **  Specifies extra space on the start side of this view.
+        android:layout_marginTop="0dp"            **  Specifies extra space on the top side of this view.
+        android:layout_marginEnd="0dp"            **  Specifies extra space on the end side of this view.
+        android:layout_marginBottom="0dp"         **  Specifies extra space on the bottom side of this view.
+
+     -->
+
+    <TextView
+        android:id="@+id/tv_splash"
+        android:layout_width="wrap_content"
+        android:layout_height="142dp"
+        android:layout_above="@+id/register_button"
+        android:layout_alignTop="@+id/vv1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="150dp"
+        android:text="For Tourists by Tourists"
+        android:textAlignment="center"
+        android:textColor="#dc2b1f"
+        android:textSize="35dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.194" />
+
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="192dp"
+        android:background="@drawable/round_button"
+        android:text="Login"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteY="390dp" />
+
+    <!--   <Button
+        android:id="@+id/login_button"
+
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"         **  	If true, makes the end edge of this view match the end edge of the parent.
+        android:layout_alignParentBottom="true"      **     If true, makes the bottom edge of this view match the bottom edge of the parent.
+        android:layout_marginEnd="16dp"              **     Specifies extra space on the end side of this view.
+        android:layout_marginBottom="192dp"          **     Specifies extra space on the bottom side of this view.
+        android:background="@drawable/round_button"  **     This will set the background of the button(round_button is the xml file found in res->drawable->round_button.xml )
+        android:fontFamily="@font/bungasai"          **     A font family is a set of font files along with its style and weight details.(file can be found in res->font->bungasai.ttf)
+        android:text="Login"                         **     Text for button
+        android:textColor="#fff"                     **     Text color
+        android:textSize="20sp"                      **     Text size
+        tools:layout_editor_absoluteY="390dp"        **     The tools:layout_editor attributes are only used for the editor preview and have no effect on the final layouts                -->
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="287dp"
+        android:background="@drawable/round_button"
+        android:text="Register"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_resetpass"
+        android:layout_width="335dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginEnd="-367dp"
+        android:layout_marginBottom="40dp"
+        android:layout_toStartOf="@+id/login_button"
+        android:text="Forgot password? Click here!"
+        android:textAlignment="center"
+        android:textColor="#fff" />
+
+</RelativeLayout>
