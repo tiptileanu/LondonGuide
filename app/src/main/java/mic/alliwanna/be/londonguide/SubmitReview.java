@@ -1,8 +1,11 @@
 package mic.alliwanna.be.londonguide;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -79,5 +83,43 @@ public class SubmitReview extends AppCompatActivity {
         });
 
 
+    }
+
+    //menu options are defined
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu:
+                // sign out
+                AuthUI.getInstance().signOut(this);
+                Intent intentReset = new Intent(this, FirstScreen.class);
+                startActivity(intentReset);
+
+                return true;
+            case R.id.add_poi_menu:
+                // go to add poi activity
+                Intent intent = new Intent(this, ImagePickerActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    //menu is inflated on activity creation
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    // menu option is hidden on this activity
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(Build.VERSION.SDK_INT > 11) {
+            invalidateOptionsMenu();
+            menu.findItem(R.id.add_poi_menu).setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 }

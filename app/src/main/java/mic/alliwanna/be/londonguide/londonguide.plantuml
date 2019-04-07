@@ -1,0 +1,353 @@
+@startuml
+
+title __LONDONGUIDE's Class Diagram__\n
+
+  package mic.alliwanna.be.londonguide {
+    class FirstScreen {
+        - login : Button
+        - register : Button
+        - reset : TextView
+        - anim_left_right : Animation
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class ImagePickerActivity {
+        {static} + REQUEST : int
+        {static} + URL : String
+        {static} + TYPE : String
+        - btnPick : Button
+        - btnUpload : Button
+        - ivPoi : ImageView
+        - etPhotoName : EditText
+        - mySpinner : Spinner
+        - url : Uri
+        - storageReference : StorageReference
+        # onCreate()
+        - getExtension()
+        # onActivityResult()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class InfoPoiActivity {
+        ~ iv : ImageView
+        ~ name : TextView
+        ~ description : TextView
+        ~ address : TextView
+        ~ opening : TextView
+        ~ website : TextView
+        ~ booking : TextView
+        ~ viewReviews : Button
+        ~ submitReview : Button
+        - websiteUrl : String
+        - bookingUrl : String
+        - photoUrl : String
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class LoginScreen {
+        - email : EditText
+        - password : EditText
+        - resetPass : TextView
+        - login : Button
+        - database : FirebaseDatabase
+        - dbRef : DatabaseReference
+        - mAuth : FirebaseAuth
+        - mAuthListener : AuthStateListener
+        {static} - TAG : String
+        + onBackPressed()
+        # onCreate()
+        # onStart()
+        # onStop()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class MainActivity {
+        ~ attr : FrameLayout
+        ~ muses : FrameLayout
+        ~ parks : FrameLayout
+        - TYPE : String
+        # onCreate()
+        + onOptionsItemSelected()
+        + onCreateOptionsMenu()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class POI {
+        - poiName : String
+        - poiDescription : String
+        - poiAddress : String
+        - poiOpeningHours : String
+        - poiWebsite : String
+        - poiPhotoUrl : String
+        - poiBookingUrl : String
+        - poiType : String
+        - poiRating : float
+        - poiCanBook : boolean
+        {static} + CREATOR : Creator<POI>
+        + POI()
+        + POI()
+        # POI()
+        + getPoiName()
+        + setPoiName()
+        + getPoiDescription()
+        + setPoiDescription()
+        + getPoiAddress()
+        + setPoiAddress()
+        + getPoiOpeningHours()
+        + setPoiOpeningHours()
+        + getPoiWebsite()
+        + setPoiWebsite()
+        + getPoiPhotoUrl()
+        + setPoiPhotoUrl()
+        + getPoiBookingUrl()
+        + setPoiBookingUrl()
+        + getPoiType()
+        + setPoiType()
+        + getPoiRating()
+        + setPoiRating()
+        + isPoiCanBook()
+        + setPoiCanBook()
+        + describeContents()
+        + writeToParcel()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class PoiAdapter {
+        ~ list : ArrayList<POI>
+        + PoiAdapter()
+        + onCreateViewHolder()
+        + onBindViewHolder()
+        + getItemCount()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class Holder {
+        ~ iv : ImageView
+        ~ tv : TextView
+        ~ rb : RatingBar
+        + Holder()
+        + onClick()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    interface PoiInterface {
+        {abstract} + onPoiClick()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class PoiDetailsActivity {
+        ~ poiName : EditText
+        ~ poiAddress : EditText
+        ~ poiOpeningHours : EditText
+        ~ poiWebsite : EditText
+        ~ poiBookingUrl : EditText
+        ~ poiDescription : EditText
+        ~ poiRatingBar : RatingBar
+        ~ poiCanBook : Switch
+        ~ btnCancel : Button
+        ~ btnSave : Button
+        ~ dbRef : DatabaseReference
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class PoiList {
+        ~ rv : RecyclerView
+        ~ manager : LayoutManager
+        ~ dbRef : DatabaseReference
+        ~ list : ArrayList<POI>
+        ~ listener : ValueEventListener
+        # onCreate()
+        + onPoiClick()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class RegisterUser {
+        - email : EditText
+        - password : EditText
+        - register : Button
+        - mAuth : FirebaseAuth
+        + onBackPressed()
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class ResetPassword {
+        - email : EditText
+        - reset : Button
+        - mAuth : FirebaseAuth
+        {static} - TAG : String
+        + onBackPressed()
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class Reviews {
+        - nameOfPoi : String
+        - reviewOfPoi : String
+        - userId : String
+        - ratingOfPoi : float
+        + Reviews()
+        + Reviews()
+        + getNameOfPoi()
+        + setNameOfPoi()
+        + getReviewOfPoi()
+        + setReviewOfPoi()
+        + getUserId()
+        + setUserId()
+        + getRatingOfPoi()
+        + setRatingOfPoi()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class ReviewsAdapter {
+        ~ reviewsList : ArrayList<Reviews>
+        + ReviewsAdapter()
+        + onCreateViewHolder()
+        + onBindViewHolder()
+        + getItemCount()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class Holder {
+        ~ nameOfPoi : TextView
+        ~ userName : TextView
+        ~ userReview : TextView
+        ~ userRating : RatingBar
+        + Holder()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class ReviewsList {
+        ~ rvReviews : RecyclerView
+        ~ managerReviews : LayoutManager
+        ~ queryRef : Query
+        ~ reviewsList : ArrayList<Reviews>
+        ~ listener : ValueEventListener
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class SplashScreen {
+        {static} - splashTimeOut : int
+        ~ tvsplash : TextView
+        ~ anim_left_right : Animation
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class SubmitReview {
+        - tvName : TextView
+        - etDecription : EditText
+        - rbUserRating : RatingBar
+        - btnCancel : Button
+        - btnSubmit : Button
+        - dbReviews : DatabaseReference
+        - poiRating : float
+        # onCreate()
+    }
+  }
+  
+
+  package mic.alliwanna.be.londonguide {
+    class User {
+        ~ email : String
+        ~ password : String
+        + User()
+        + User()
+        + getEmail()
+        + setEmail()
+        + getPassword()
+        + setPassword()
+    }
+  }
+  
+
+  FirstScreen -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  ImagePickerActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  InfoPoiActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  LoginScreen -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  MainActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  POI -up-|> Parcelable
+  PoiAdapter -up-|> Adapter
+  PoiAdapter o-- PoiInterface : listener
+  PoiAdapter +-down- Holder
+  Holder -up-|> OnClickListener
+  Holder -up-|> ViewHolder
+  Holder o-- PoiInterface : listener
+  Holder +-down- PoiInterface
+  PoiDetailsActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  PoiList -up-|> PoiInterface
+  PoiList -up-|> AppCompatActivity
+  PoiList o-- PoiAdapter : adapter
+  HostCallbacks -up-|> FragmentHostCallback
+  RegisterUser -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  ResetPassword -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  ReviewsAdapter -up-|> Adapter
+  ReviewsAdapter +-down- Holder
+  Holder -up-|> ViewHolder
+  ReviewsList -up-|> AppCompatActivity
+  ReviewsList o-- ReviewsAdapter : reviewsAdapter
+  HostCallbacks -up-|> FragmentHostCallback
+  SplashScreen -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  SubmitReview -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  User -up-|> LoginScreen
+  HostCallbacks -up-|> FragmentHostCallback
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
