@@ -16,7 +16,10 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
-        android:text="Pick image" />
+        android:text="Pick image"
+        android:background="@drawable/round_button"
+        android:padding="6dp"
+        android:textColor="@android:color/white"/>
 
     <ImageView
         android:id="@+id/iv_poi_image"
@@ -74,5 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:text="upload" />
+        android:text="upload"
+        android:background="@drawable/round_button"
+        android:textColor="@android:color/white"/>
 </LinearLayout>

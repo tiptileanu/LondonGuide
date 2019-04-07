@@ -32,10 +32,12 @@ public class FirstScreen extends AppCompatActivity {
 
         final VideoView videoView = findViewById(R.id.vv1);
 
-
-        login = findViewById(R.id.login_button);           // find button by id from res->layout
-        register = findViewById(R.id.register_button);     // find button by id from  res->layout
-        reset = findViewById(R.id.tv_resetpass);           // find textview by id from  res->layout
+        // find button by id from res->layout
+        login = findViewById(R.id.login_button);
+        // find button by id from  res->layout
+        register = findViewById(R.id.register_button);
+        // find textview by id from  res->layout
+        reset = findViewById(R.id.tv_resetpass);
 
 
         anim_left_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left_right);// call animation by id from  res->anim
