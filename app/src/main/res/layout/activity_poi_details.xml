@@ -97,14 +97,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="cancel" />
+            android:text="cancel"
+            android:background="@drawable/round_button"/>
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="save" />
+            android:layout_marginLeft="32dp"
+            android:text="save"
+            android:background="@drawable/round_button"/>
     </LinearLayout>
 
 </LinearLayout>

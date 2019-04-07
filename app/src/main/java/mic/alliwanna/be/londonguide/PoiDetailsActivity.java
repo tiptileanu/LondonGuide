@@ -105,6 +105,14 @@ public class PoiDetailsActivity extends AppCompatActivity {
             }
         });
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(PoiDetailsActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     //menu options are defined
