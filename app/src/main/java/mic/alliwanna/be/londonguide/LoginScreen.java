@@ -1,6 +1,5 @@
 package mic.alliwanna.be.londonguide;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,27 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 public class LoginScreen extends AppCompatActivity {
-
-
     private EditText email, password;
     private TextView resetPass;
     private Button login;
-
-
-    private FirebaseDatabase database; // declare instance of FirebaseDatabase
-    private DatabaseReference dbRef;
-
-
-    private FirebaseAuth mAuth;  // instance of FirebaseAuth
+    // instance of FirebaseAuth
+    private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private static final String TAG = "Firebase Login "; // declare a TAG constant // used to log events that should never happen
-
+    // declare a TAG constant // used to log events that should never happen
+    private static final String TAG = "Firebase Login ";
 
     @Override
     public void onBackPressed() {
@@ -47,122 +35,86 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-
-
-        mAuth = FirebaseAuth.getInstance();//initialize the FirebaseAuth instance
-
-
-        email = findViewById(R.id.email_login);       // find edittext by id from res->layout
-        password = findViewById(R.id.password_login); // find edittext by id from res->layout
-        login = findViewById(R.id.log_button);        // find button by id from res->layout
-        resetPass = findViewById(R.id.forgot_pass);   // find textview by id from res->layout
-
-
-
-
-        login.setOnClickListener(new View.OnClickListener()
-        {
+        mAuth = FirebaseAuth.getInstance();
+        email = findViewById(R.id.email_login);
+        password = findViewById(R.id.password_login);
+        login = findViewById(R.id.log_button);
+        resetPass = findViewById(R.id.forgot_pass);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String _email = email.getText().toString().toLowerCase().trim();
                 String _pass = password.getText().toString().toLowerCase().trim();
-                if(_email.length() > 0 && _pass.length() > 0)
-                {
-
-                    mAuth.signInWithEmailAndPassword(_email, _pass) // After a user signs in for the first time, a new user account is created and linked to the credentials
-
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>()
-                            {
+                if (_email.length() > 0 && _pass.length() > 0) {
+                    mAuth.signInWithEmailAndPassword(_email, _pass)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 //On task completion
                                 @Override
-                                public void onComplete(@NonNull Task<AuthResult> task)
-                                {
-                                    if(!task.isSuccessful())
-                                    {
-                                        Toast.makeText(LoginScreen.this, "Error signing in!", Toast.LENGTH_SHORT).show();
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(LoginScreen.this,
+                                                "Error signing in!",
+                                                Toast.LENGTH_SHORT).show();
 
-                                    } else{
-                                        Toast.makeText(LoginScreen.this, "Sign in success!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(LoginScreen.this, MainActivity.class));
+                                    } else {
+                                        Toast.makeText(LoginScreen.this,
+                                                "Sign in success!",
+                                                Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginScreen.this,
+                                                MainActivity.class));
                                     }
                                 }
                             })
-
-
-                            .addOnFailureListener(new OnFailureListener()
-                            {
+                            .addOnFailureListener(new OnFailureListener() {
                                 @Override
-                                public void onFailure(@NonNull Exception e)
-                                {
-                                    Toast.makeText(LoginScreen.this, "Cannot find details in database", Toast.LENGTH_SHORT).show();
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(LoginScreen.this,
+                                            "Cannot find details in database",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
             }
         });
-
-        resetPass.setOnClickListener(new View.OnClickListener()
-        {
+        resetPass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(new Intent(LoginScreen.this, ResetPassword.class));
             }
         });
-
-
-
-
-        mAuthListener = new FirebaseAuth.AuthStateListener()
-        {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
-            {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //Instatiate a FirebaseUser object and get the current user
-                FirebaseUser user = firebaseAuth.getCurrentUser();// Firebase catches the user already signed in
-
-                if (user !=null)
-                {
-
-                    Log.d(TAG, "Sign in successful"); //                  declare a TAG constant
-
-                    if(user!=null)
-
-                    {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    //console log message for our own use
+                    Log.d(TAG, "Sign in successful");
+                    if (user != null) {
                         startActivity(new Intent(LoginScreen.this, MainActivity.class));
-
                     }
-                } else
-                {
-
+                } else {
                     Log.d(TAG, "User signed out!");
                 }
             }
         };
-
     }
 
 
     @Override
-    protected void onStart() //Called when the activity is becoming visible to the user.
-
-    {
+    //Called when the activity is becoming visible to the user.
+    protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
-    protected void onStop() //Called when the activity is becoming hidden from the user
-
-    {
+    //Called when the activity is becoming hidden from the user
+    protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(mAuthListener);
     }
-
-
 }

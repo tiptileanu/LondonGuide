@@ -2,6 +2,7 @@
     <string name="app_name">London Guide</string>
     <string name="sign_out">Sign Out</string>
     <string name="add_poi">Add POI</string>
+    <string name="poi_type">POI type:</string>
 
     <string-array name="poi_type">
         <item>Attraction</item>

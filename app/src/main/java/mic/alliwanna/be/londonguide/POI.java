@@ -8,6 +8,7 @@ public class POI implements Parcelable {
     private float poiRating;
     private boolean poiCanBook;
 
+    //default empty constructor needed for reading
     public POI() {
     }
 
@@ -59,6 +60,7 @@ public class POI implements Parcelable {
         }
     };
 
+    //setter and getter public methods for POI's attributes/properties
     public String getPoiName() {
         return poiName;
     }

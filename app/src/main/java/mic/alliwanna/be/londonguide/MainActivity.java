@@ -9,87 +9,65 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     FrameLayout attr, muses, parks;
+    //Constant used to name  an intent extra, sent to next activity
     private String TYPE = "TYPE";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        not in use TO BE DELETED
-//        //Firebase login/register interface
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.EmailBuilder().build(),
-//                new AuthUI.IdpConfig.GoogleBuilder().build(),
-//                new AuthUI.IdpConfig.AnonymousBuilder().build());
-//        // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setIsSmartLockEnabled(false)
-//                        .setAvailableProviders(providers)
-//                        .setLogo(R.drawable.attractions)
-//                        .build(),
-//                1);
-
         attr = findViewById(R.id.fl_attractions);
         muses = findViewById(R.id.fl_museums);
         parks = findViewById(R.id.fl_parks);
-
+        //click listener on first category
         attr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PoiList.class);
+                //assign value Attraction if 1st category is clicked on
                 intent.putExtra(TYPE, "Attraction");
                 startActivity(intent);
             }
         });
-
+        //click listener on second category
         muses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PoiList.class);
+                //assign value Attraction if 2nd category is clicked on
                 intent.putExtra(TYPE, "Museum");
                 startActivity(intent);
 
             }
         });
-
+        //click listener on third category
         parks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PoiList.class);
+                //assign value Attraction if 3rd category is clicked on
                 intent.putExtra(TYPE, "Park");
                 startActivity(intent);
 
             }
         });
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out_menu:
-                // sign out
+                // if this option is chosen, user is logged out and app redirected to login screen
                 AuthUI.getInstance().signOut(this);
                 Intent intentReset = new Intent(this, FirstScreen.class);
                 startActivity(intentReset);
 
                 return true;
             case R.id.add_poi_menu:
-                // go to add poi activity
+                // if this option is chosen. go to add poi activity
                 Intent intent = new Intent(this, ImagePickerActivity.class);
                 startActivity(intent);
             default:

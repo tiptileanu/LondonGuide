@@ -73,25 +73,32 @@ public class ImagePickerActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String downloadUrl=uri.toString();
+                                //convert option chosen in spinner to string
                                 String poiType = mySpinner.getSelectedItem().toString();
                                 Intent intent=new Intent(ImagePickerActivity.this, PoiDetailsActivity.class);
+                                //send URL to next activity via intent extra
                                 intent.putExtra(URL, downloadUrl);
+                                //send POI type to next activity via intent extra
                                 intent.putExtra(TYPE, poiType);
                                 startActivity(intent);
                             }
                         });
-                // if aan error occurs, a toast(message) is displayed
+                // if an error occurs, a toast(message) is displayed
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Something went wrong, upload failed!!", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Something went wrong, upload failed!!",
+                                Toast.LENGTH_SHORT);
                         toast.show();
                 //displays a spinner while the photo is being uploaded
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        //Display a prograss bar while the photo is being uploaded to Firebase
                         ProgressDialog progress;
                         progress = new ProgressDialog(ImagePickerActivity.this);
                         progress.setTitle("Please Wait!");
@@ -113,7 +120,8 @@ public class ImagePickerActivity extends AppCompatActivity {
         return map.getExtensionFromMimeType(resolver.getType(uri));
     }
 
-    // Checks result of activity(image pick); if it is the right requst code and result is ok(not failure)
+    // Checks result of activity(image pick)
+    // if it is the right request code & result is ok(not failure) & photo has been selected(not null)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

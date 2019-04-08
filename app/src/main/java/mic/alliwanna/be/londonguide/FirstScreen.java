@@ -16,7 +16,7 @@ import android.widget.VideoView;
 
 public class FirstScreen extends AppCompatActivity {
     private Button login, register;
-    private TextView reset, splash;
+    private TextView reset, appName;
     private Animation anim_left_right;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,11 @@ public class FirstScreen extends AppCompatActivity {
 
         // find textview by id from  res->layout
         reset = findViewById(R.id.tv_resetpass);
-        splash=findViewById(R.id.tv_splash2);
+        appName=findViewById(R.id.tv_splash2);
 
         // call animation by id from  res->anim
         anim_left_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left_right);
-        splash.startAnimation(anim_left_right);
+        appName.startAnimation(anim_left_right);
         register.startAnimation(anim_left_right);
         login.startAnimation(anim_left_right);
 

@@ -24,14 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PoiDetailsActivity extends AppCompatActivity {
-
-
     EditText poiName, poiAddress, poiOpeningHours, poiWebsite, poiBookingUrl, poiDescription;
     RatingBar poiRatingBar;
     Switch poiCanBook;
     Button btnCancel, btnSave;
     DatabaseReference dbRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,66 +46,67 @@ public class PoiDetailsActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btn_cancel);
         btnSave = findViewById(R.id.btn_save);
 
+        Intent i = getIntent();
+        final String downloadUrl = i.getStringExtra("URL");
+        final String poiType = i.getStringExtra("TYPE");
 
-        Intent i=getIntent();
-        final String downloadUrl=i.getStringExtra("URL");
-        final String poiType=i.getStringExtra("TYPE");
-
-        dbRef= FirebaseDatabase.getInstance().getReference(poiType);
+        dbRef = FirebaseDatabase.getInstance().getReference(poiType);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                POI poi=new POI( poiName.getText().toString(),
-                        poiDescription.getText().toString(),
-                        poiAddress.getText().toString(),
-                        poiOpeningHours.getText().toString(),
-                        poiWebsite.getText().toString(),
-                        downloadUrl,
-                        poiBookingUrl.getText().toString(),
-                        poiType, poiRatingBar.getRating(),
-                        poiCanBook.isChecked());
-                dbRef.child(poi.getPoiName()).setValue(poi).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "POI saved, going back to main screen!", Toast.LENGTH_SHORT);
-                        toast.show();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Something went wrong, upload failed!!", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        // Add delay to display toast(3 seconds)
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent =new Intent(PoiDetailsActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        }, 3000);
-
-
-
-                    }
-                });
-
-//                Intent intent =new Intent(PoiDetailsActivity.this, MainActivity.class);
-//                startActivity(intent);
+                if (poiName.getText().toString().isEmpty() || poiName.getText().toString() == null) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "POI can't be empty. Please introduce POI's name",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    POI poi = new POI(poiName.getText().toString(),
+                            poiDescription.getText().toString(),
+                            poiAddress.getText().toString(),
+                            poiOpeningHours.getText().toString(),
+                            poiWebsite.getText().toString(),
+                            downloadUrl,
+                            poiBookingUrl.getText().toString(),
+                            poiType, poiRatingBar.getRating(),
+                            poiCanBook.isChecked());
+                    dbRef.child(poi.getPoiName()).setValue(poi).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "POI saved, going back to main screen!",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Something went wrong, upload failed!!",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // Add delay to display toast(3 seconds)
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(PoiDetailsActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }, 3000);
+                        }
+                    });
+                }
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(PoiDetailsActivity.this, MainActivity.class);
+                Intent intent = new Intent(PoiDetailsActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -133,7 +131,6 @@ public class PoiDetailsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     //menu is inflated on activity creation
@@ -146,7 +143,7 @@ public class PoiDetailsActivity extends AppCompatActivity {
     // menu option is hidden on this activity
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if(Build.VERSION.SDK_INT > 11) {
+        if (Build.VERSION.SDK_INT > 11) {
             invalidateOptionsMenu();
             menu.findItem(R.id.add_poi_menu).setVisible(false);
         }
